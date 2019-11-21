@@ -18,13 +18,15 @@ namespace Superheroes.Controllers
         // GET: Superheroes
         public ActionResult Index()
         {
-            return View();
+            var superheroFolk = context.Superheroes.ToList();
+            return View(superheroFolk);
         }
 
         // GET: Superheroes/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            Superhero foundHero = context.Superheroes.Where(i => i.id == id).FirstOrDefault();
+            return View(foundHero);
         }
 
         // GET: Superheroes/Create
@@ -53,6 +55,7 @@ namespace Superheroes.Controllers
         // GET: Superheroes/Edit/5
         public ActionResult Edit(int id)
         {
+            Superhero superheroFromDb = context.Superheroes.Where(i => i.id == id).FirstOrDefault();
             return View();
         }
 
@@ -63,7 +66,48 @@ namespace Superheroes.Controllers
             try
             {
                 // TODO: Add update logic here
-                //find superhero by id, pass in superhero object info somehow to a method that will update it
+                Superhero superheroFromDb = context.Superheroes.Where(i => i.id == id).FirstOrDefault();
+                if (superhero.superName != null)
+                {
+                    superheroFromDb.superName = superhero.superName;
+                }
+                else
+                {
+                    superheroFromDb.superName = superheroFromDb.superName;
+                }
+                if (superhero.alterEgoName != null)
+                {
+                    superheroFromDb.alterEgoName = superhero.alterEgoName;
+                }
+                else
+                {
+                    superheroFromDb.alterEgoName = superheroFromDb.alterEgoName;
+                }
+                if (superhero.primarySuperpower != null)
+                {
+                    superheroFromDb.primarySuperpower = superhero.primarySuperpower;
+                }
+                else
+                {
+                    superheroFromDb.primarySuperpower = superheroFromDb.primarySuperpower;
+                }
+                if (superhero.secondarySuperpower != null)
+                {
+                    superheroFromDb.secondarySuperpower = superhero.secondarySuperpower;
+                }
+                else
+                {
+                    superheroFromDb.secondarySuperpower = superheroFromDb.secondarySuperpower;
+                }
+                if (superhero.catchphrase != null)
+                {
+                    superheroFromDb.catchphrase = superhero.catchphrase;
+                }
+                else
+                {
+                    superheroFromDb.catchphrase = superheroFromDb.catchphrase;
+                }
+
                 context.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -76,7 +120,8 @@ namespace Superheroes.Controllers
         // GET: Superheroes/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            Superhero superhero = context.Superheroes.Where(s => s.id == id).FirstOrDefault();
+            return View(superhero);
         }
 
         // POST: Superheroes/Delete/5
@@ -86,6 +131,7 @@ namespace Superheroes.Controllers
             try
             {
                 // TODO: Add delete logic here
+                superhero = context.Superheroes.Where(s => s.id == id).FirstOrDefault();
                 context.Superheroes.Remove(superhero);
                 context.SaveChanges();
                 return RedirectToAction("Index");

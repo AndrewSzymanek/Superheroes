@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Superheroes.Models.Superhero>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.superName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.alterEgoName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.primarySuperpower)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.secondarySuperpower)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.catchphrase)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.superName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.alterEgoName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.primarySuperpower)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.secondarySuperpower)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.catchphrase)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>
