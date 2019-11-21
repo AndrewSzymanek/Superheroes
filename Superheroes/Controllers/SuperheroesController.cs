@@ -58,12 +58,13 @@ namespace Superheroes.Controllers
 
         // POST: Superheroes/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, Superhero superhero)
         {
             try
             {
                 // TODO: Add update logic here
-
+                //find superhero by id, pass in superhero object info somehow to a method that will update it
+                context.SaveChanges();
                 return RedirectToAction("Index");
             }
             catch
